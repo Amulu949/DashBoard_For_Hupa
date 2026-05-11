@@ -35,13 +35,20 @@ st.caption("Interactive CGM, insulin, meal, activity, sleep, predictive and pres
 # DATA LOADING
 # =========================
 @st.cache_data
+
 def load_data():
+    import os
+
+    # Debug: show what files Streamlit Cloud actually sees
+    st.write("📁 Files in working directory:", os.listdir("."))
+
+    # Try loading your files
     df = pd.read_excel(
-        "cleaned_hupa_diabetes_recent (1).xlsb",
+        "cleaned_hupa_diabetes_recent.xlsb", 
         engine="pyxlsb"
     )
 
-    demo = pd.read_csv("cleaned_demographics (1).csv")
+    demo = pd.read_csv("cleaned_demographics.csv")
 
     df["time"] = pd.to_datetime(df["time"], errors="coerce")
 
@@ -50,7 +57,7 @@ def load_data():
 
     return df
 
-df = load_data()        
+df = load_data()     
 
 # =========================
 # PREPROCESSING
