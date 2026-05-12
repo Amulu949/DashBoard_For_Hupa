@@ -119,7 +119,7 @@ section[data-testid="stSidebar"] {
 
 @st.cache_data
 def load_data():
-    df = pd.read_excel("cleaned_hupa_diabetes_recent1.xlsb")
+    df = pd.read_excel("cleaned_hupa_diabetes_recent.xlsb",engine="pyxlsb")
     demo = pd.read_csv("cleaned_demographics.csv")
 
     df["time"] = pd.to_datetime(df["time"], errors="coerce")
